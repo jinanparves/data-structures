@@ -17,9 +17,7 @@ public class DistanceFinder
     public DistanceFinder(String filename)
     {
         // Read the file and intialize the instance variables
-        . . .
-
-
+       
 
 
 
@@ -42,12 +40,12 @@ public class DistanceFinder
     {
         // Follow the algorithm in the textbook
         // Remember the starting point is the first city in the file.
-        . . .
+        
+        Map<String, Integer> shortestDistances = new HashMap<String, Integer>();
 
 
 
 
-
-
+      return shortestDistances; 
     }
 }
