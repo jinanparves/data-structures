@@ -12,6 +12,18 @@ public class ListUtil
     */
     public static void reverse(LinkedList<String> strings)
     {
-        ...
+        LinkedList<String> reversedStrings = new LinkedList<>(); 
+
+
+        for (int i = 0; i < strings.size(); i++){
+            strings.add(i, strings.remove(strings.size() - 1));
+
+            for (int j = 0; j < strings.size(); j++){
+                reversedStrings.add(strings.get(j));
+            }
+
+            
+
+        }
     }
 }

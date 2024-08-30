@@ -17,7 +17,7 @@ public class SentenceReverser
     	Scanner scanner = new Scanner(sentence);
     	
         // Complete this method. Use a Stack.
-        ...
+        
 
 
 
