@@ -35,7 +35,18 @@ public class SudokuSolver {
             System.out.println("Cannot open: " + fileName);
         }
 
+
+  
+
+
         // create the list of sets for each row (this.rows)
+
+        for (int i  = 0; i < 9; i++){
+            Set<Integer> newRow = new HashSet<Integer>(); 
+            
+        }
+
+
         // ...
 
         // create the list of sets for each col (this.cols)
