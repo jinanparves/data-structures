@@ -17,7 +17,7 @@ public class Sieve
         Set<Integer> setOfNumbers = new HashSet<Integer>(); 
 
         for (int i = 2; i < n; i++){
-            setOfNumbers.add(i); // We're adding multiples of two into the set 
+            setOfNumbers.add(i);  
         }
 
         for (int i = 2; i < n; i++){
