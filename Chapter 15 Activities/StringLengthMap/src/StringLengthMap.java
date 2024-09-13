@@ -18,12 +18,15 @@ public class StringLengthMap
         {
 
             // Create your map here
+
+            Map<Integer, String> wordsMap =  new HashMap<Integer, String> ();
             
 
-            while (in.hasNext())
-            {
+            while (in.hasNext()){
                 String word = clean(in.next());
                 Integer len = word.length();
+
+                wordsMap.put(len, word);
 
                 // Update the map here
                 // Modify Worked Example 15.1
