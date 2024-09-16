@@ -28,7 +28,7 @@ public class FirstLetterMap
 
                 // Update the map here
                 // Use the Java 8 merge method                
-                wordsMap.merge(c, new HashSet<>(    ), (existingSet, newSet) -> {
+                wordsMap.merge(c, new HashSet<>(Collections.singleton(word)), (existingSet, newSet) -> {
                         existingSet.addAll(newSet);
                         return existingSet;
                     });
