@@ -12,13 +12,13 @@ public class FirstLetterMap
 {
     public static void main(String[] args)
     {
-        String filename = "src/test1.txt";
+        String filename = "test1.txt";
 
         try (Scanner in = new Scanner(new File(filename)))
         {
 
             // Create your map here
-            ...
+            Map<Character, HashSet<String>> wordsMap = new TreeMap<Character, HashSet<String>>(); 
 
             while (in.hasNext())
             {
@@ -27,14 +27,23 @@ public class FirstLetterMap
 
                 // Update the map here
                 // Modify Worked Example 15.1
-                . . .
+                
+                if (wordsMap.containsKey(c) == true){
+                    wordsMap.get(c).add(word); 
+                }else{
+                    wordsMap.put(c, new HashSet<>(Collections.singleton(word))); 
+                }
 
 
             }
 
             // Print the map here in this form
             // a: [a, able, aardvark]
-            . . .
+            
+            for (Character givenC : wordsMap.keySet()){
+                System.out.println(""+ givenC + " : " + wordsMap.get(givenC)); 
+            }
+
         } catch (FileNotFoundException e)
         {
             System.out.println("Cannot open: " + filename);
