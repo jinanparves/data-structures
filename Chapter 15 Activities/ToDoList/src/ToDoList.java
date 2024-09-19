@@ -1,4 +1,5 @@
 import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Scanner;
 /**
  * Implement a to do list. Tasks have a priority between 
@@ -12,7 +13,8 @@ import java.util.Scanner;
 public class ToDoList
 {
     // Instance variable(s)
-    . . .
+    Queue<Task> toDoListQueue; 
+
 
     /**
      * Constructor
@@ -20,7 +22,7 @@ public class ToDoList
     public ToDoList()
     {
         // Complete this
-        . . .
+        toDoListQueue = new PriorityQueue<Task>(); 
     }
 
     /**
@@ -60,9 +62,23 @@ public class ToDoList
     public void addTask(String optionStr)
     {
         // Complete this method
-        . . .
-            
-            
+
+
+        
+        String splicedInteger =  optionStr.substring(4, 5); 
+        String taskDescription = optionStr.substring(6); 
+ 
+        try{
+            int priority = Integer.parseInt(splicedInteger); 
+            Task newTask = new Task(priority, taskDescription); 
+
+            toDoListQueue.add(newTask); 
+        }catch(NumberFormatException nfe){
+
+        }
+
+        
+
     }
 
     /**
@@ -71,12 +87,10 @@ public class ToDoList
     */
     public void nextTask()
     {
-        Task next = null;
+        Task next = toDoListQueue.poll();
         
         // Complete this method
-        . . .
-        
-        
+   
         if (next == null)
         {
             System.out.println("There are no tasks in the list.");
@@ -85,4 +99,5 @@ public class ToDoList
             System.out.println(next.getDescription());
         }
     }
+
 }
