@@ -16,19 +16,39 @@ public class SentenceReverser
     {
     	Scanner scanner = new Scanner(sentence);
         // Complete this method. Use a Stack.
-        Stack<String> bigsentences=new Stack<String>(); 
+
+        Stack<String> sentenceStack =new Stack<String>(); 
+        String newSentence = new String(""); 
+
         while (scanner.hasNext())
         {
-            String temp=scanner.next();
-            Stack<String> sentences=new Stack<String>(); 
-            sentences.push(temp);
+            String temp = scanner.next();
+            sentenceStack.push(temp);
+
             if(temp.contains("."))
             {
-                System.out.println();
+                for (int i  = 0; i < sentenceStack.size();){
+                    String stackWord = sentenceStack.pop(); 
+                   
+                    if (stackWord.substring(stackWord.length()-1).equals(".")){
+                        stackWord = stackWord.substring(0, stackWord.length()-1);
+                        stackWord = stackWord.substring(0,1).toUpperCase() + stackWord.substring(1);  
+                    }
+
+                    if (i == sentenceStack.size()){
+                        stackWord = stackWord.substring(0,1).toLowerCase() + stackWord.substring(1);  
+                        stackWord = stackWord + ".";
+                    }
+
+
+                    newSentence = newSentence + " " + stackWord;  
+                }
+
+                sentenceStack.clear(); 
             }
         }
 
-        return sentence;
+        return newSentence;
        
 
 
