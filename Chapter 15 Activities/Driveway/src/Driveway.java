@@ -1,5 +1,5 @@
 import java.util.Stack;
-import java.util.Scanner;
+//import java.util.Scanner;
 
 /**
  * Class for simulating a driveway and a street, using stacks
@@ -22,8 +22,8 @@ public class Driveway
     public Driveway()
     {
         // Complete the constructor
-        ...
-
+        driveway = new Stack<Integer>(); 
+        street = new Stack<Integer>(); 
 
     }
 
@@ -35,8 +35,14 @@ public class Driveway
     public void add(int licensePlate)
     {
         // Complete this method
-        ...
 
+        if (driveway.contains(licensePlate) || street.contains(licensePlate)){
+          System.out.println("The car is already in either street or driveway! Duplicate!");
+        }else{
+          driveway.push(licensePlate); 
+        }
+
+        
 
     }
 
@@ -45,12 +51,26 @@ public class Driveway
       *
       * @param licensePlate number of license plate.
     */
-    public void remove(int licensePlate)
-    {
-        // Complete this method
-        ...
+    public void remove(int licensePlate){
+      // Complete this method
 
+      if (driveway.contains(licensePlate)){
+        for (int license : driveway){
+          if (license == licensePlate){
+            street.push(driveway.pop()); 
+            break; 
+          }else{
+            street.push(driveway.pop()); 
+          }
+        }
 
+        while (!street.isEmpty()){
+          driveway.push(street.pop());
+        }
+
+      }else{
+        System.out.println("The license plate is not in the driveway!");
+      }
     }
 
     /**
@@ -59,12 +79,17 @@ public class Driveway
     public void print()
     {
         System.out.println("In Driveway, starting at first in (one license plate per line):");
+     
         // Print the cars in the driveway here
-        ...
+        for (int car : driveway){
+          System.out.println(car);
+        }
 
         System.out.println("In Street, starting at first in (one license plate per line):");
-        // Print the cars in the street here
-        ...
 
-    }
+        // Print the cars in the street here
+        for (int car : street){
+          System.out.println(car);
+        }    
+      }
 }
