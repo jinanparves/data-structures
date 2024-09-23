@@ -30,7 +30,7 @@ public class FirstLetterMap
                 // Use the Java 8 merge method                
                 wordsMap.merge(c, new HashSet<>(Collections.singleton(word)), (existingSet, newSet) -> {
                         existingSet.addAll(newSet);
-                        return existingSet;
+                        return existingSet; 
                     });
             }
 

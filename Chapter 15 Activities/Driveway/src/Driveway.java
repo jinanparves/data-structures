@@ -42,8 +42,6 @@ public class Driveway
           driveway.push(licensePlate); 
         }
 
-        
-
     }
 
     /**
@@ -55,7 +53,9 @@ public class Driveway
       // Complete this method
 
       if (driveway.contains(licensePlate)){
-        for (int license : driveway){
+
+       while (!driveway.isEmpty()){
+          int license = driveway.peek(); 
           if (license == licensePlate){
             street.push(driveway.pop()); 
             break; 
