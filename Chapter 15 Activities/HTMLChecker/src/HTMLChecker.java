@@ -22,12 +22,34 @@ public class HTMLChecker
         try (Scanner in = new Scanner(new File(filename)))
         {
             // Your code goes here
-            . . .
+          Stack<String> htmlStack = new Stack<>(); 
+          boolean isNested = true; 
+
+          while (in.hasNext() && isNested == true){
+            String tag = in.next(); 
+            
+            if (tag.substring(0, 2).equals("</")){
+               String lastString = htmlStack.peek(); 
+                
+               if (!(lastString.replace("<", "").replace(">", "").equals(tag.replace("<", "").replace(">", "").replace("/", ""))) ){
+                 isNested = false; 
+               }else{
+                 
+                 htmlStack.pop();
+               }
+               
+            }else{
+              htmlStack.add(tag); 
+            }
+          }
+          
+          System.out.println("The result of if the program is nested or not: "+isNested); 
 
 
-        } catch (FileNotFoundException e)
+        } 
+        catch (FileNotFoundException e)
         {
-            System.out.println("Cannot open: " + filename);
+           System.out.println("Cannot open: " + filename);
         }
 
     }

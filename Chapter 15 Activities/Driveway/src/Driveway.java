@@ -42,6 +42,7 @@ public class Driveway
           driveway.push(licensePlate); 
         }
 
+      print(); 
     }
 
     /**
@@ -64,13 +65,11 @@ public class Driveway
           }
         }
 
-        while (!street.isEmpty()){
-          driveway.push(street.pop());
-        }
-
       }else{
         System.out.println("The license plate is not in the driveway!");
       }
+      
+      print(); 
     }
 
     /**

@@ -19,25 +19,28 @@ public class StringLengthMap
 
             // Create your map here
 
-            Map<Integer, String> wordsMap = new TreeMap<Integer, String>(); 
+            Map<Integer, Set<String>> wordsMap = new TreeMap<Integer, Set<String>>(); 
             
 
             while (in.hasNext())
             {
                 String word = clean(in.next());
-                Integer len = word.length();
+                Set<String> setOfWords = new HashSet<String>(); 
+                setOfWords.add(word); 
 
-                wordsMap.put(len, word);
+                Integer len = word.length();
 
                 // Update the map here
                 // Modify Worked Example 15.1
 
+
                 if (wordsMap.containsKey(len) == true){
-                    String currentString = wordsMap.get(len); 
-                    currentString = currentString + ", "+word; 
-                    wordsMap.put(len, currentString); 
+                    Set<String> currentSet = wordsMap.get(len); 
+                    currentSet.add(word); 
+                    wordsMap.put(len, currentSet); 
                 }else{
-                    wordsMap.put(len, word); 
+                    
+                    wordsMap.put(len, setOfWords); 
                 }
 
                
@@ -47,9 +50,20 @@ public class StringLengthMap
             // Use this format: 1: i, a, i
 
             for (int lengthValue  : wordsMap.keySet()){
-                System.out.println(""+lengthValue+": "+wordsMap.get(lengthValue)); 
+                System.out.print(""+lengthValue+": "); 
+                
+                List<String> listOfWords = new ArrayList<>(wordsMap.get(lengthValue));
+                 
+                for (int i  = 0; i < listOfWords.size(); i++){
+                  if (i == listOfWords.size()-1){
+                    System.out.print(listOfWords.get(i));
+                  }else{
+                    System.out.print(listOfWords.get(i) + ", ");
+                  }
+                }
+                
+                System.out.println(); 
             }
-
 
         } catch (FileNotFoundException e)
         {
