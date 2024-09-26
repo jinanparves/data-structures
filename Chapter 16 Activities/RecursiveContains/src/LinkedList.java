@@ -158,6 +158,9 @@ public class LinkedList
         public Node next;
     }
 
+
+
+
     private class LinkedListIterator implements ListIterator
     {
         private Node position;

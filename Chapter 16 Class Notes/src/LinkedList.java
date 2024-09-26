@@ -6,14 +6,28 @@ import java.util.NoSuchElementException;
  * contains a subset of the methods of the standard
  * java.util.LinkedList class.
 */
-public class LinkedList
-{
-
+public class LinkedList{
+    private Node first; 
 
     /**
         Constructs an empty linked list.
     */
 
+    public LinkedList() {
+        /*
+         * first refers to the first Node in the list 
+         * If the list is empty, first will be null 
+         */
+
+         this.first = null; 
+         
+
+
+        
+
+    }
+
+    
 
 
 
@@ -22,7 +36,12 @@ public class LinkedList
         @return the first element in the linked list
     */
 
-
+    public Object getFirst(){
+        if (this.first == null){
+            throw new NoSuchElementException(); 
+        }
+        return this.first.data; 
+    }
 
 
     /**
@@ -30,6 +49,15 @@ public class LinkedList
         @return the removed element
     */
 
+    public Object removeFirst(){
+        if (this.first == null){
+            throw new NoSuchElementException(); 
+        }
+
+        Object element = this.first.data; 
+        this.first = this.first.next; 
+        return element; 
+    }
 
 
 
@@ -38,6 +66,15 @@ public class LinkedList
         Adds an element to the front of the linked list.
         @param element the element to add
     */
+
+    public void addFirst(Object element){
+        
+        Node newElement = new Node(); 
+        newElement.data = element; 
+        newElement.next = this.first; 
+        this.first = newElement; 
+
+    }
 
 
 
@@ -53,9 +90,17 @@ public class LinkedList
 
 
     //Class Node
+    // Node is static because it does NOT need access to anything in LinkedList
+
+  
 
 
-    class LinkedListIterator //implements ListIterator
+    static class Node{
+        public Node next; 
+        public Object data; 
+    }
+
+    class LinkedListIterator  //implements ListIterator
     {
       //private data
 
