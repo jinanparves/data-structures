@@ -20,11 +20,6 @@ public class LinkedList{
          */
 
          this.first = null; 
-         
-
-
-        
-
     }
 
     
@@ -77,6 +72,17 @@ public class LinkedList{
     }
 
 
+    public String toString(){
+        String toReturn = new String(""); 
+        LinkedListIterator it1 = new LinkedListIterator(); 
+
+        while (it1.hasNext()){
+            it1.next();
+            toReturn = toReturn + " " + it1.position.data; 
+        }
+
+        return toReturn; 
+    }
 
 
 
@@ -103,28 +109,64 @@ public class LinkedList{
     class LinkedListIterator  //implements ListIterator
     {
       //private data
-
+        private Node position; 
+        private Node previous; 
+        private boolean isAfterNext; 
 
         /**
             Constructs an iterator that points to the front
             of the linked list.
         */
 
+        public LinkedListIterator(){
+            position = null; 
+            previous = null;  
+            isAfterNext = false; 
+        }
+
 
         /**
             Moves the iterator past the next element.
             @return the traversed element
         */
+        public Object next(){
+            if (!hasNext()){
+                throw new NoSuchElementException(); 
+            }
 
+            previous = position; 
 
+            if (position == null){
+                // We know that we are the beginning of the list 
+                position = first; 
 
+            }else {
+                position = position.next; 
+            }
 
+            isAfterNext = true; 
+            return previous; 
+        }
 
+        
+
+    
         /**
             Tests if there is an element after the iterator position.
             @return true if there is an element after the iterator position
         */
+        public boolean hasNext(){
+            // Check if the list is empty 
+            if (position == null){
+                // this means that the list MIGHT be empty 
+                return first != null; // if first is null, it removes falls. If it is null, then it is empty. This means that we have something. 
+            }else{
 
+            }
+
+            // The iterator has moved 
+            return position.next != null; 
+        }
 
         /**
             Adds an element before the iterator position
@@ -132,29 +174,67 @@ public class LinkedList{
             @param element the element to add
         */
 
+        public void add(Object element){
+            // Check if the iterator is at the beginning 
 
+            if (position == null){
+                // this means we want to ADD to the beginning of the list 
+                addFirst(element);
+                position = first; 
+            }else { // there is a position associated with it ! 
+                Node newNode = new Node(); 
+                newNode.data = element; 
+                newNode.next = position.next;
+                
+                
+                // Set the next element of the CURRENT position to point to our new node 
+                
+                position.next = newNode; 
+                position = newNode; 
+            }
 
-
-
+            isAfterNext = false; 
+        }
+        
 
         /**
             Removes the last traversed element. This method may
             only be called after a call to the next() method.
         */
 
+        public void remove(){
+            // You can ONLY call it after you've called the NEXT method. Otherwise, it'll give us an exception! 
+            if (isAfterNext == false){
+                throw new IllegalStateException(); 
+            }
 
+            // We're going to check if the iterator is at the beginning 
+            if (position == first){
+                removeFirst(); 
+                position = null; 
+            }else{
+                previous.next = position.next; 
+                position = previous; 
+            }
 
-
-
-
+            isAfterNext = false; 
+        }
 
         /**
             Sets the last traversed element to a different value.
             @param element the element to set
         */
 
+        public void set(Object element){
+            if (!isAfterNext){
+                throw new IllegalStateException();
+            }
+
+            position.data = element; 
+        }
 
 
+       
 
     }//LinkedListIterator
 }//LinkedList
