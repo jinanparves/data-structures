@@ -34,26 +34,41 @@ public class LinkedList
         return currentSize;
     }
 
+
     /**
-        Checks if this linked list contains the given object.
-        @param obj The object to be checked for.
-        @return If the object exists in the list.
+        Returns a boolean true/false that checks if the LinkedList has the given object. Implemented by directly traversing the links, and not using an iterator. 
+        @param obj the Object to check in the LinkedList
+        @return if the Object is in the LinkedList
     */
-    public boolean contains(Object obj)
-    {
-        // ...
+
+    public boolean contains(Object obj){
+        Node currentNode = first; 
+
+        while (currentNode != null){
+            if (currentNode.data.equals(obj)){
+                return true; 
+            }
+            currentNode = currentNode.next; 
+        }
+        return false; 
     }
 
     /**
-        Checks if the given node or any in its following nodes contains the given object.
-        @param obj The object to be checked for.
-        @return If the object exists in the node or its following nodes.
+        Returns a boolean true/false that checks if the LinkedList has the given object. Implemented by recursively traversing the links. 
+        @param start the first Node in the LinkedList  
+        @param obj the Object to check in the LinkedList
     */
-    public static boolean contains(Node start, Object obj)
-    {
-        // ...
-    }
 
+    private static boolean contains(Node start, Object obj){
+        if (start.equals(obj)){
+            return true; 
+        } else if (start.equals(null)){
+            return false; 
+        }else {
+            return contains(start.next, obj); 
+        }
+    }
+    
     /**
         Returns the first element in the linked list.
         @return the first element in the linked list

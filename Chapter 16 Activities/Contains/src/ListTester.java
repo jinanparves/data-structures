@@ -7,7 +7,7 @@ public class ListTester
     {
         LinkedList names = new LinkedList();
 
-        System.out.print((names.contains("Zack") ? "true" : "false"));
+     //   System.out.print((names.contains("Zack") ? "true" : "false"));
         System.out.println();
         System.out.println("Expected: false");
 

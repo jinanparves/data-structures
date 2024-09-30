@@ -72,6 +72,75 @@ public class LinkedList{
     }
 
 
+       /**
+            Returns an integer that represents the size of the LinkedList. Implemented by directly traversing the links, not using an iterator.
+        */
+
+        public int size(){
+            int size = 0; 
+            Object currentNode = this.getFirst(); 
+
+            while (currentNode != null){
+                size++; 
+                this.first = this.first.next; 
+            }
+
+            return size; 
+        }
+
+        /**
+            Returns an integer that represents the size of the LinkedList. Implemented by recursively traversing the links, not using an iterator.
+            @param start the firstNode in the LinkedList 
+        */
+
+        public int size(Node start){
+            if (start == null){
+                return 0; 
+            }else{
+                return 1 + size(start.next);
+            }
+        }
+
+
+     /**
+            Returns a boolean true/false that checks if the LinkedList has the given object. Implemented by directly traversing the links, and not using an iterator. 
+            @param obj the Object to check in the LinkedList
+        */
+
+        public boolean contains(Object obj){
+            boolean doesContain = false; 
+            Object currentNode = this.getFirst(); 
+
+            while (currentNode != null){
+                if (currentNode.equals(obj)){
+                    doesContain  = true; 
+                    break; 
+                }
+                this.first = this.first.next; 
+            }
+
+
+            return doesContain; 
+        }
+
+
+        /**
+            Returns a boolean true/false that checks if the LinkedList has the given object. Implemented by recursively traversing the links. 
+            @param start the first Node in the LinkedList  
+            @param obj the Object to check in the LinkedList
+        */
+
+        private static boolean contains(Node start, Object obj){
+            if (start.equals(obj)){
+                return true; 
+            } else if (start.equals(null)){
+                return false; 
+            }else {
+                return contains(start.next, obj); 
+            }
+        }
+ 
+
     public String toString(){
         String toReturn = new String(""); 
         LinkedListIterator it1 = new LinkedListIterator(); 
@@ -233,6 +302,7 @@ public class LinkedList{
             position.data = element; 
         }
 
+   
 
        
 

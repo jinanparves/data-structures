@@ -20,14 +20,19 @@ public class LinkedList
         first = null;
     }
 
-    /**
-        Computes the size of the linked list.
-        @return the number of elements in the list
-    */
-    public int size()
-    {
-        . . .
-    }
+
+          /**
+            Returns an integer that represents the size of the LinkedList. Implemented by recursively traversing the links, not using an iterator.
+            @param start the firstNode in the LinkedList 
+        */
+
+        public int size(Node start){
+            if (start == null){
+                return 0; 
+            }else{
+                return 1 + size(start.next);
+            }
+        }
 
 
     /**

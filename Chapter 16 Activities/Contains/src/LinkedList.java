@@ -35,13 +35,21 @@ public class LinkedList
     }
 
     /**
-        Checks if this linked list contains the given object.
-        @param obj The object to be checked for.
-        @return If the object exists in the list.
-    */
-    public boolean contains(Object obj)
-    {
-        // ...
+            Returns a boolean true/false that checks if the LinkedList has the given object. Implemented by directly traversing the links, and not using an iterator. 
+            @param obj the Object to check in the LinkedList
+            @return if the Object is in the LinkedList
+        */
+
+    public boolean contains(Object obj){
+        Node currentNode = first; 
+
+        while (currentNode != null){
+            if (currentNode.data.equals(obj)){
+                return true; 
+            }
+            currentNode = currentNode.next; 
+        }
+        return false; 
     }
 
     /**
