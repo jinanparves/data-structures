@@ -23,9 +23,17 @@ public class LinkedListQueue
     */
     public void firstToLast()
     {
-        . . .
+        if (head == null || tail == null){
+            throw (new IllegalStateException()); 
+        }
+
+        Node oldHead = head; 
+        head = head.next; 
+        oldHead.next = null; 
 
 
+        tail.next = oldHead; 
+        tail = oldHead;
 
     }
 

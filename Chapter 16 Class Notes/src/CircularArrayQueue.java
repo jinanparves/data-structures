@@ -69,10 +69,6 @@ public class CircularArrayQueue
         this.head = (this.head + 1) % this.elements.length; 
         return element; 
     }
-
-
-
-
     /**
         Grows the element array if the current size equals the capacity.
     */

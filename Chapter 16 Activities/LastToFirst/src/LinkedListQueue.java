@@ -22,11 +22,23 @@ public class LinkedListQueue
     */
     public void lastToFirst()
     {
-        . . .
+        if (head == null || tail == null){
+            throw (new IllegalStateException()); 
+        }
+
+
+        // Finds the second to last Node (right before the tail)
+        Node current = head; 
+        while (current.next != tail){
+            current = current.next; 
+        }
 
 
 
-
+        Node oldTail = tail;
+        current.next = null; // makes the 2nd last object the new tail 
+        oldTail.next = head; // the old tail is the new head 
+        head = oldTail;  // the head is the old tail 
 
     }
 
