@@ -61,4 +61,46 @@ public class Tree
     }
 
     // Additional methods will be added in later sections.
+
+    /*
+     * A visitor whose vist method is called for each vistied node during a tree traversal 
+     */
+
+     public interface Visitor{ // The purpose of an interface is that it is a template for what you want to do. To standardize things, you need to have a visit method. 
+        /*
+         * The visit method is called for each visited node. 
+         * @param data: The data of the node being visted 
+         */
+
+         void visit(Object data); 
+     }
+
+     /*
+      * Traverse this tree in preorder. 
+      * @param v: The visitor to be invoked on each node. 
+      */
+
+      public void preorder(Visitor v){
+        Tree.preorder(this.root, v); 
+      }
+
+      /*
+       * This will traverse tree with a given root in preorder. 
+       * @param n:: The root of the tree to traverse. 
+       * @param v: The visitor to be invoked on each node. 
+       */
+
+      private static void preorder(Node n, Visitor v){
+        if (n == null){
+            return; 
+        }
+
+        v.visit(n.data); 
+
+        for (Node child : n.children){
+            Tree.preorder(child, v); 
+        }
+
+      }
+
 }

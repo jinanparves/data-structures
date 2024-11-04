@@ -118,16 +118,53 @@ public class BinarySearchTree
             if (parent == null){
                 this.root = newChild; 
             }
+            else{
+                parent.right = newChild; 
+            }
+
+            return; 
         }
 
-   
+        // Case 3: Remove a node with two children 
+
+        // Find the least element of the right side subtree 
+        // The least element will replace the removed Node 
+        Node leastParent = toBeRemoved; 
+        Node least = toBeRemoved.right; 
+
+        while (least.left != null){
+            leastParent = least; 
+            least = least.left; 
+        }
+
+        // Move the data to the node being removed 
+        toBeRemoved.data = least.data; 
+
+        // Unlink the least child 
+        // we have removed the node and replaced it with the least data. The least data is STILL there where it orignally was. 
+
+        if (leastParent == toBeRemoved){
+            leastParent.right = least.right; 
+        }else{
+            leastParent.left = least.right; 
+        }
+
     }
     
     /**
         Prints the contents of the tree in sorted order.
     */
-    public void print()
+    public void print(Node parent)
     {   
+        print(this.root);
+        System.out.println(); 
+
+        if (parent == null){
+            return; 
+        }
+        print(parent.left); 
+        System.out.println(parent.data + " ");
+        print(parent.right);
         
     }   
 
